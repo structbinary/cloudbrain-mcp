@@ -1,10 +1,19 @@
-# DevOps MCP Servers
+# CloudBrain MCP Servers
 
-A suite of Model Context Protocol (MCP) servers for DevOps tools, enabling AI assistants and automation to interact with modern infrastructure and deployment technologies.
+A suite of Model Context Protocol (MCP) servers for DevOps tools and technologies, enabling AI assistants and automation to interact with modern infrastructure and deployment technologies.
+
+This repository serves as the **central hub for all MCP servers** built to support a wide range of DevOps tools and workflows. Each MCP server provides a standardized interface for AI agents and automation platforms to interact with specific tools, services, or platforms, making it easier to integrate, automate, and extend DevOps operations across diverse environments.
+
+- **Kubernetes Package Management:** For managing Kubernetes workloads, the Helm MCP Server enables AI-driven Helm chart operations and best practices.
+- **CI/CD, Build & Release:** Dedicated MCP servers (e.g., ArgoCD MCP Server, Jenkins MCP Server) will provide automation and orchestration for continuous integration, delivery, and deployment pipelines.
+- **Cloud Orchestration:** To manage cloud resources across providers, there will be MCP servers for tools like Terraform and Terragrunt, supporting AWS, Azure, Google Cloud, and more.
+- **Observability & Monitoring:** For monitoring and observability, specialized MCP servers will be available for Prometheus, the TICK stack (Telegraf, InfluxDB, Chronograf, Kapacitor), and other monitoring solutions.
+
+The vision for CloudBrain MCP Servers is to offer a **modular, extensible, and unified platform** where each DevOps domain—whether infrastructure as code, CI/CD, cloud orchestration, or observability—can be managed through a dedicated MCP server. This approach empowers AI assistants and automation tools to deliver intelligent, context-aware DevOps workflows, regardless of the underlying technology stack.
 
 ## Table of Contents
 
-- [DevOps MCP Servers](#devops-mcp-servers)
+- [CloudBrain MCP Servers](#cloudbrain-mcp-servers)
   - [Table of Contents](#table-of-contents)
   - [Available Servers](#available-servers)
     - [Helm MCP Server](#helm-mcp-server)
@@ -41,14 +50,7 @@ A Model Context Protocol (MCP) server for managing Kubernetes workloads via Helm
 
 ## Installation and Setup
 
-Each server has specific installation instructions. Generally, you can:
-
-1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/) for dependency management
-2. Install Python 3.10+ (e.g., `uv python install 3.10`)
-3. Install any required CLIs (e.g., [Helm CLI](https://helm.sh/docs/intro/install/), [kubectl](https://kubernetes.io/docs/tasks/tools/))
-4. Configure access to your infrastructure (e.g., kubeconfig for Kubernetes)
-5. Add the server to your MCP client configuration
-
+Each server has specific installation instructions.
 See each server's detailed README for specific requirements and configuration options.
 
 ## Contributing

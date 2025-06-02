@@ -1,7 +1,6 @@
 # Helm MCP Server
 
-Model Context Protocol (MCP) server for managing Kubernetes workloads via Helm, inspired by EKS MCP and Terraform MCP architectures.
-
+Model Context Protocol (MCP) server for managing Kubernetes workloads via Helm.
 ## Features
 
 - **Helm Best Practices**
