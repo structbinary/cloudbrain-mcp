@@ -29,12 +29,22 @@ Model Context Protocol (MCP) server for managing Kubernetes workloads via Helm.
 - **Helm Chart Search**: `search_repository`
 - **Helm Release Management**: `install_chart`, `upgrade_release`, `list_releases`, `uninstall_release`
 
-## Prerequisites
+## Local Development/Modification:
 
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/) for dependency management
-2. Install Python 3.10+ (e.g., `uv python install 3.10`)
-3. Install [Helm CLI](https://helm.sh/docs/intro/install/) and [kubectl](https://kubernetes.io/docs/tasks/tools/)
-4. Access to one or more Kubernetes clusters (kubeconfig or in-cluster)
+2. Create and activate a virtual environment with Python 3.10:
+   ```sh
+   uv venv --python=3.10
+   source .venv/bin/activate  # On Unix/macOS
+   # or
+   .venv\Scripts\activate  # On Windows
+   ```
+3. Install dependencies from pyproject.toml:
+   ```sh
+   uv pip install -e .
+   ```
+4. Install [Helm CLI](https://helm.sh/docs/intro/install/) and [kubectl](https://kubernetes.io/docs/tasks/tools/)
+5. Access to one or more Kubernetes clusters (kubeconfig or in-cluster)
 
 ## Installation
 
@@ -61,7 +71,8 @@ Configure MCP Client like Claude Desktop to use Docker:
         "FASTMCP_LOG_LEVEL=ERROR",
         "--volume",
         "/Users/structbinary/.kube/config:/app/.kube/config",
-        "helm-mcp-server:latest"
+        "helm-mcp-server:latest",
+        "--allow-write"
       ],
       "env": {},
       "disabled": false,

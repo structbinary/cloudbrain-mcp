@@ -1,3 +1,5 @@
+"""Helm MCP server implementation for managing Kubernetes workloads via Helm."""
+import argparse
 from mcp.server.fastmcp import FastMCP
 from helm_mcp_server.core.tools.helm_handler import HelmHandler
 from helm_mcp_server.static import (
@@ -16,6 +18,7 @@ SERVER_DEPENDENCIES = [
 ]
 
 def create_server():
+    """Creates and returns a FastMCP server instance for Helm operations."""
     return FastMCP(
         'helm-mcp-server',
         instructions=f'{HELM_MCP_INSTRUCTIONS}',
@@ -23,8 +26,8 @@ def create_server():
     )
 
 def main():
+    """Initialize and run the Helm MCP server."""
     configure_logging_from_env()
-    import argparse
     parser = argparse.ArgumentParser(description='Model Context Protocol (MCP) server for Helm')
     parser.add_argument(
         '--allow-write',
