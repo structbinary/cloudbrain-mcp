@@ -129,6 +129,14 @@ class ArgoCDApplicationHandler:
                 pass
         elif isinstance(e, PermissionError):
             status_code = 403
+        elif error_msg.lower() == "success":
+            # Don't treat success messages as errors
+            return {
+                "isError": False,
+                "message": "Operation completed successfully",
+                "status_code": 200,
+                "resource": resource,
+            }
         else:
             status_code = 500
 
@@ -630,7 +638,7 @@ class ArgoCDApplicationHandler:
                     request_id=self.request_id,
                     user=self.user,
                     resource=name,
-                    result=data.model_dump()
+                    result=data
                 )
                 return DeleteApplicationResponse.success(
                     message="Application deleted successfully."
@@ -660,6 +668,7 @@ class ArgoCDApplicationHandler:
                     f"/api/v1/applications/{name}/sync",
                     self.token,
                     self.server_url,
+                    data={},  # Empty dict for default sync behavior
                     bypass_tls=self.bypass_tls
                 )
 
@@ -669,7 +678,7 @@ class ArgoCDApplicationHandler:
                     request_id=self.request_id,
                     user=self.user,
                     resource=name,
-                    result=data.model_dump()
+                    result=data
                 )
                 return SyncApplicationResponse.success(
                     message="Application Synced Successfully."
@@ -702,15 +711,25 @@ class ArgoCDApplicationHandler:
                     bypass_tls=self.bypass_tls
                 )
 
+                if data is None:
+                    return GetApplicationResponse.error(
+                        message=f"Application '{name}' not found",
+                        status_code=404,
+                        resource=name
+                    )
+
+                # app_model = self._map_application_data(data)
+
                 log_success(
                     f"get_application succeeded for {name}",
                     tool="get_application",
                     request_id=self.request_id,
                     user=self.user,
                     resource=name,
-                    result=data.model_dump()
+                    result=data
                 )
                 return GetApplicationResponse.success(
+                    application=app_model,
                     message="Application Retrieved Successfully."
                 )
 

@@ -134,8 +134,7 @@ Configure MCP Client for local development:
 ##### Create Application
 Example prompts:
 - "I want to create a new ArgoCD application named 'guestbook' with these details -"
-```json
-{
+```json{
   "project": "default",
   "repo_url": "https://github.com/argoproj/argocd-example-apps.git",
   "path": "guestbook",
@@ -143,16 +142,12 @@ Example prompts:
   "destination_namespace": "default",
   "target_revision": "HEAD",
   "sync_policy": "Automated",
-  "sync_options": ["Prune=true"],
-  "prune_propagation_policy": "foreground",
-  "finalizer": false,
-  "namespace": "argocd"
 }
 ```
 
 ##### Update Application
 Example prompts:
-- "I need to update the 'hello-world' application to use a different repository with these details "
+- "I need to update the 'guestbook' application to use a different revision and syncpolicy with these details "
 ```json
 {
   "project": "default",

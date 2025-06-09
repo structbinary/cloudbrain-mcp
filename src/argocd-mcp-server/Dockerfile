@@ -29,15 +29,6 @@ COPY --from=uv --chown=app:app /root/.local /root/.local
 COPY --from=uv --chown=app:app /app/.venv /app/.venv
 COPY ./docker-healthcheck.sh /usr/local/bin/docker-healthcheck.sh
 
-# Install the package and create entry point
-WORKDIR /app
-COPY . /app
-RUN pip install --no-cache-dir -e . && \
-    python -m pip install --no-cache-dir . && \
-    ls -la /app/.venv/bin/ && \
-    echo "Contents of /app/.venv/bin:" && \
-    find /app/.venv/bin -type f -ls
-
 USER app
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "docker-healthcheck.sh" ]
-ENTRYPOINT ["python", "-m", "argocd_mcp_server.server"]
+ENTRYPOINT ["argocd-mcp-server"]

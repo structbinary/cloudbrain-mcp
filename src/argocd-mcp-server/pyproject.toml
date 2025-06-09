@@ -1,6 +1,6 @@
 [project]
 name = "argocd-mcp-server"
-version = "0.1.0"
+version = "1.0.0"
 description = "A Model Context Protocol (MCP) server for managing Kubernetes services using ArgoCD"
 readme = "README.md"
 requires-python = ">=3.10"
