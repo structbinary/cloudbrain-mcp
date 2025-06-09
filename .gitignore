@@ -560,7 +560,5 @@ samples/mcp-integration-with-nova-canvas/output/*
 
 memory-bank/*
 .clinerules
-
-src/argocd-mcp-server
 src/jenkins-mcp-server
 src/terragrunt-mcp-server

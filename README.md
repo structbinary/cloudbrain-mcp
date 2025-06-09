@@ -17,6 +17,7 @@ The vision for CloudBrain MCP Servers is to offer a **modular, extensible, and u
   - [Table of Contents](#table-of-contents)
   - [Available Servers](#available-servers)
     - [Helm MCP Server](#helm-mcp-server)
+    - [ArgoCD MCP Server](#argocd-mcp-server)
   - [Installation and Setup](#installation-and-setup)
   - [Contributing](#contributing)
   - [License](#license)
@@ -47,6 +48,35 @@ A Model Context Protocol (MCP) server for managing Kubernetes workloads via Helm
   - Rich metadata for Helm charts and repositories
 
 [Learn more](src/helm-mcp-server/README.md)
+
+### ArgoCD MCP Server
+
+[![Docker](https://img.shields.io/badge/docker-ready-blue)](https://hub.docker.com/)
+[![ArgoCD](https://img.shields.io/badge/argocd-supported-brightgreen)](https://argoproj.github.io/argo-cd/)
+
+A Model Context Protocol (MCP) server for managing Kubernetes applications and resources via ArgoCD using GitOps principles.
+
+- **GitOps Best Practices**
+  - Prescriptive guidance for ArgoCD application management
+  - Security and compliance recommendations for Kubernetes workloads
+  - Automated sync and self-healing capabilities
+  - Comprehensive resource monitoring and management
+- **ArgoCD Operations**
+  - Create, update, delete, and sync applications
+  - Manage application resources and their lifecycle
+  - Retrieve logs, events, and resource actions
+  - Robust error handling and logging
+- **Resource Management**
+  - Get resource trees and managed resources
+  - Retrieve workload logs and events
+  - Execute resource actions
+  - Monitor application health and status
+- **Documentation and Resources**
+  - Access ArgoCD best practices and workflow guides
+  - Rich metadata for applications and resources
+  - Comprehensive error handling and logging
+
+[Learn more](src/argocd-mcp-server/README.md)
 
 ## Installation and Setup
 
