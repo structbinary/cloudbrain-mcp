@@ -18,7 +18,7 @@ The vision for CloudBrain MCP Servers is to offer a **modular, extensible, and u
   - [Available Servers](#available-servers)
     - [Helm MCP Server](#helm-mcp-server)
     - [ArgoCD MCP Server](#argocd-mcp-server)
-    - [Agents Central Registry](#agents-mcp-server)
+    - [Agents Central Registry](#agents-central-registry)
   - [Installation and Setup](#installation-and-setup)
   - [Contributing](#contributing)
   - [License](#license)
