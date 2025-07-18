@@ -18,6 +18,7 @@ The vision for CloudBrain MCP Servers is to offer a **modular, extensible, and u
   - [Available Servers](#available-servers)
     - [Helm MCP Server](#helm-mcp-server)
     - [ArgoCD MCP Server](#argocd-mcp-server)
+    - [Agents Central Registry](#agents-mcp-server)
   - [Installation and Setup](#installation-and-setup)
   - [Contributing](#contributing)
   - [License](#license)
@@ -77,6 +78,32 @@ A Model Context Protocol (MCP) server for managing Kubernetes applications and r
   - Comprehensive error handling and logging
 
 [Learn more](src/argocd-mcp-server/README.md)
+
+### Agents Central Registry
+
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/)
+[![MCP Protocol](https://img.shields.io/badge/MCP-Protocol-green.svg)](https://modelcontextprotocol.io/)
+
+A central registry service that leverages the Model Context Protocol (MCP) to enable dynamic discovery and interaction between Google A2A (Agent-to-Agent) agents and various MCP servers. This system serves as a discovery hub for DevOps agents, facilitating seamless integration and communication across distributed agent architectures.
+
+- **Dynamic Agent Discovery**
+  - Enable agentic systems to dynamically find and connect with Google A2A agents
+  - Natural language queries to find agents and servers using descriptive capabilities
+  - Compatibility validation between agents and MCP servers
+- **MCP Server Discovery**
+  - Allow individual agents to discover capability-matched MCP servers
+  - Intelligent task mapping to the most suitable specialized agents
+  - Real-time registry updates as agents and servers come online or offline
+- **Standardized Integration**
+  - Provide a unified interface for agent communication using MCP protocol
+  - Centralized agent management through a single registry
+  - Support for complex multi-agent DevOps workflows with automatic task routing
+- **Scalable Architecture**
+  - Support growing numbers of agents and MCP servers
+  - Self-registration capabilities for executor agents
+  - Dynamic tool integration as new MCP servers become available
+
+[Learn more](src/agents-mcp-server/README.md)
 
 ## Installation and Setup
 
