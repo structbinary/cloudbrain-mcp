@@ -1,4 +1,4 @@
-from typing import List, Any, Optional, Callable
+from typing import List, Any, Optional, Callable, Type
 from agents_mcp_server.utils import MCPTool
 from agents_mcp_server.models import AgentCard
 from collections.abc import Iterable
@@ -40,8 +40,22 @@ class FindA2AAgentsTool(MCPTool):
         return "Find relevant agent cards based on a natural language query."
 
     @property
-    def args_schema(self):
+    def args_schema(self) -> Type[BaseModel]:
+        """
+        Returns the schema for validating input arguments.
+        Returns:
+            Type[BaseModel]: A Pydantic model class that defines the expected input structure.
+        """
         return FindA2AAgentsInputSchema
+
+    @property
+    def is_single_input(self) -> bool:
+        """
+        Indicates whether the tool expects a single input value.
+        Returns:
+            bool: False, as this tool accepts a structured input object.
+        """
+        return False
 
     def __init__(self, registry_manager):
         """

@@ -31,6 +31,7 @@ logger = setup_logger("agents_mcp_server.main")
 ## Singleton pattern for RegistryManager
 class RegistryManagerSingleton:
     _instance = None
+    _initialized = False
 
     @classmethod
     def get_instance(cls):
@@ -42,7 +43,13 @@ class RegistryManagerSingleton:
             mcp_servers_path = os.path.join(os.path.dirname(__file__), 'static', 'mcp_servers')
             cls._instance.load_agent_cards_from_directory(agent_cards_path)
             cls._instance.load_mcp_servers_from_directory(mcp_servers_path)
+            cls._initialized = True
+            logger.info("RegistryManager initialization completed.")
         return cls._instance
+
+    @classmethod
+    def is_initialized(cls):
+        return cls._initialized
 
 def create_server(host, port):
     """Creates and returns a FastMCP server instance for Agents MCP operations."""
@@ -60,7 +67,12 @@ def main(host, port, transport):
     registry_manager = RegistryManagerSingleton.get_instance()
 # def register_tools(server: FastMCP, registry_manager: RegistryManager):
     @server.tool(name="find_a2a_agents", description="Find A2A agents by query")
-    async def find_a2a_agents(input: FindA2AAgentsInputSchema) -> List[AgentCard]:
+    async def find_a2a_agents(
+        query: str,
+        limit: Optional[int] = None,
+        offset: int = 0,
+        **filters
+    ) -> List[AgentCard]:
         """
         Asynchronously execute the agent card search based on the provided query and filters.
 
@@ -68,7 +80,6 @@ def main(host, port, transport):
 
         ## Arguments
         - query (str): The natural language query to search for relevant agent cards.
-        - filter_func (Optional[Callable[[AgentCard], bool]]): Optional callable for advanced filtering (applied after field filters).
         - limit (Optional[int]): Maximum number of results to return (after filtering and sorting).
         - offset (int): Number of results to skip (for pagination).
         - **filters: Additional keyword filters (equality on AgentCard fields, e.g., status="active").
@@ -76,7 +87,6 @@ def main(host, port, transport):
         ## Usage Tips
         - Use `query` to describe the agent capabilities or features you are looking for.
         - Use keyword arguments (e.g., `status="active"`) to filter by AgentCard fields.
-        - Provide a `filter_func` for custom, advanced filtering logic.
         - Use `limit` and `offset` for pagination of large result sets.
 
         ## Response Information
@@ -85,18 +95,15 @@ def main(host, port, transport):
         - Logs all major steps and errors for traceability.
 
         Example:
-            results = await tool.execute(
-                query="NLP streaming agents",
-                status="active",
-                limit=10
-            )
+            results = await tool.execute(query="NLP streaming agents", limit=10)
         """
-        filters = {k: v for k, v in input.model_dump().items() if k not in {"query", "limit", "offset"}}
+        logger.info(f"Executing find_a2a_agents with query: '{query}', limit: {limit}, offset: {offset}, filters: {filters}")
+        
         return await FindA2AAgentsTool(registry_manager).execute(
-            input.query,
-            None,
-            input.limit,
-            input.offset,
+            query,
+            None,  # filter_func
+            limit,
+            offset,
             **filters
         )
 
